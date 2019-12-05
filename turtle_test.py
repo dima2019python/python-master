@@ -64,6 +64,7 @@ rectangle(5,5,'black')
 t.goto(-65,135)
 t.right(5)
 rectangle(40,5,'black')
+
 time.sleep(6)
 
 

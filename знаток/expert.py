@@ -2,14 +2,14 @@ from tkinter import Tk, simpledialog,messagebox
 
 
 def read_from_file():
-    with open('/home/aydorovs/Рабочий стол/python-master/знаток/capital_data.txt',encoding='utf-8') as file:
+    with open('/home/aydorovs/Программирование/python-master/знаток/capital_data.txt',encoding='utf-8') as file:
         for line in file:
             line = line.rstrip('\n')
             country, city = line.split('/')
             the_world[country] = city
             
 def write_to_file(country_name, city_name):
-    with open('/home/aydorovs/Рабочий стол/python-master/знаток/capital_data.txt', 'a', encoding='utf=8') as file:
+    with open('/home/aydorovs/Программирование/python-master/знаток/capital_data.txt', 'a', encoding='utf=8') as file:
         file.write(country_name + '/' + city_name + '\n')
     
 

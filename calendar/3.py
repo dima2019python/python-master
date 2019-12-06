@@ -3,7 +3,7 @@ from datetime import date, datetime
 
 def get_events():
     list_events = []
-    with open('/home/aydorovs/Рабочий стол/python-master/calendar/events.txt', encoding='utf-8') as file:
+    with open('/home/aydorovs/Программирование/python-master/calendar/events.txt', encoding='utf-8') as file:
         for line in file:
             line = line.rstrip('\n')
             current_event = line.split(',')

@@ -14,7 +14,7 @@ def blink():
     toggle_eyes()
     root.after(250, toggle_eyes)
     root.after(3000, blink)
-    
+
 def toggle_pupils():
     if not c.eyes_crossed:
         c.move(pupil_left, 10, -5)
@@ -69,16 +69,16 @@ def sad():
     else:
         c.happy_level -= 1
     root.after(5000, sad)
-             
+
 root = Tk()
 
 c = Canvas(root, width=400, height=400)
 c.configure(bg='dark blue', highlightthickness=0)
 
 def pet_feeding():
-    body = c.create_oval(15,20,395,350, outline = c.body_color, fill = c.body_color)
+    root.after(5000, eat)
     c.body_color = 'yellow'
-    body = c.create_oval(35, 20, 365, 350, outline=c.body_color, fill=c.body_color)
+    body = c.create_oval(15, 20, 395, 350, outline=c.body_color, fill=c.body_color)
     ear_left = c.create_polygon(75, 80, 75, 10, 165, 70, outline=c.body_color, fill=c.body_color)
     ear_right = c.create_polygon(255, 45, 325, 10, 320, 70, outline=c.body_color, fill=c.body_color)
     foot_left = c.create_oval(65, 320, 145, 360, outline=c.body_color, fill=c.body_color)
@@ -90,13 +90,6 @@ def pet_feeding():
     pupil_right = c.create_oval(240, 145, 250, 155, outline='black', fill='black')
 
     mouth_normal = c.create_line(170, 250, 200, 272, 230, 250, smooth=1, width=2, state=NORMAL)
-    mouth_happy = c.create_line(170, 250, 200, 282, 230, 250, smooth=1, width=2, state=HIDDEN)
-    mouth_sad = c.create_line(170, 250, 200, 232, 230, 250, smooth=1, width=2, state=HIDDEN)
-    tongue_main = c.create_rectangle(170, 250, 230, 270, outline='red', fill='red', state=HIDDEN)
-    tongue_tip = c.create_oval(170, 250, 230, 300, outline='red', fill='red', state=HIDDEN)
-                            
-    cheek_left = c.create_oval(70, 180, 120, 230, outline='pink', fill='pink', state=HIDDEN)
-    cheek_right = c.create_oval(280, 180, 330, 230, outline='pink', fill='pink', state=HIDDEN)
 
 c.body_color = 'yellow'
 body = c.create_oval(35, 20, 365, 350, outline=c.body_color, fill=c.body_color)
@@ -118,9 +111,25 @@ tongue_tip = c.create_oval(170, 250, 230, 300, outline='red', fill='red', state=
                            
 cheek_left = c.create_oval(70, 180, 120, 230, outline='pink', fill='pink', state=HIDDEN)
 cheek_right = c.create_oval(280, 180, 330, 230, outline='pink', fill='pink', state=HIDDEN)
-btn = Button(text="Click Me", background="#555", foreground="#ccc",
+
+btn = Button(text="кормить", background="#555", foreground="#ccc",
              padx="20", pady="8", font="16", command=pet_feeding)
 btn.pack()
+
+
+def eat ():
+    c.delete('all')
+    body = c.create_oval(35, 20, 365, 350, outline=c.body_color, fill=c.body_color)
+    ear_left = c.create_polygon(75, 80, 75, 10, 165, 70, outline=c.body_color, fill=c.body_color)
+    ear_right = c.create_polygon(255, 45, 325, 10, 320, 70, outline=c.body_color, fill=c.body_color)
+    foot_left = c.create_oval(65, 320, 145, 360, outline=c.body_color, fill=c.body_color)
+    foot_right = c.create_oval(250, 320, 330, 360, outline=c.body_color, fill=c.body_color)
+    eye_left = c.create_oval(130, 110, 160, 170, outline='black', fill='white')
+    pupil_left = c.create_oval(140, 145, 150, 155, outline='black', fill='black')
+    eye_right = c.create_oval(230, 110, 260, 170, outline='black', fill='white')
+    pupil_right = c.create_oval(240, 145, 250, 155, outline='black', fill='black')
+    mouth_normal = c.create_line(170, 250, 200, 272, 230, 250, smooth=1, width=2, state=NORMAL)
+    root.after(1000, blink)
 
 c.pack()
 c.bind('<Motion>', show_happy)

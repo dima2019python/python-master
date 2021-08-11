@@ -2,57 +2,10 @@ from random import randrange, randint
 from tkinter import Canvas, Tk, messagebox, font
 
 
-canvas_width = 850
-canvas_height = 500
-
-root = Tk()
-
-root.title('Space adventure')
-
-c = Canvas(root, width=canvas_width, height=canvas_height, background='dark blue')
-c.pack()
-
-star_color = ['yellow', 'dark blue', 'red', 'pink', 'light green']
-star_wight = 10
-star_height = 10
-
-
 def create_stars():
     x = randrange(10, 740)
     y = randrange(10, 450)
     c.create_oval(x, y, x + star_wight, y + star_height, fill='white', width=0)
-
-
-for i in range(30):
-    create_stars()
-
-met_wight = 85
-met_height = 85
-met_speed = 550
-met_interval = 4000
-difficylti_factor = 0.95
-
-space_ship_color = 'grey'
-space_ship_wight = 75
-space_ship_height = 90
-win_wight = 30
-win_height = 30
-x = 400
-y = 300
-space_ship = c.create_oval(x, y, x + space_ship_wight, y + space_ship_height, fill=space_ship_color, width=0)
-#space_ship_win = c.create_rectangle(417, 310, 454, 330, outline='red', fill='white')
-print(c.coords(space_ship))
-
-
-game_font = font.nametofont('TkFixedFont')
-game_font.config(size=20)
-
-lives_remaining = 3
-lives_text = c.create_text(canvas_width - 10, 10, anchor='ne', font=game_font, fill='white',
-                           text='Жизней: ' + str(lives_remaining))
-
-meteors = []
-
 
 def lose_a_life():
     global lives_remaining
@@ -109,6 +62,49 @@ def move_right(event):
         c.move(space_ship, 25, 0)
         #c.move(space_ship_win, 25, 0)
 
+canvas_width = 850
+canvas_height = 500
+
+root = Tk()
+
+root.title('Space adventure')
+
+c = Canvas(root, width=canvas_width, height=canvas_height, background='dark blue')
+c.pack()
+
+star_color = ['yellow', 'dark blue', 'red', 'pink', 'light green']
+star_wight = 10
+star_height = 10
+
+for i in range(30):
+    create_stars()
+
+met_wight = 85
+met_height = 85
+met_speed = 550
+met_interval = 4000
+difficylti_factor = 0.95
+
+space_ship_color = 'grey'
+space_ship_wight = 75
+space_ship_height = 90
+win_wight = 30
+win_height = 30
+x = 400
+y = 300
+space_ship = c.create_oval(x, y, x + space_ship_wight, y + space_ship_height, fill=space_ship_color, width=0)
+#space_ship_win = c.create_rectangle(417, 310, 454, 330, outline='red', fill='white')
+print(c.coords(space_ship))
+
+
+game_font = font.nametofont('TkFixedFont')
+game_font.config(size=20)
+
+lives_remaining = 3
+lives_text = c.create_text(canvas_width - 10, 10, anchor='ne', font=game_font, fill='white',
+                           text='Жизней: ' + str(lives_remaining))
+
+meteors = []
 
 if lives_remaining == 0:
     messagebox.showinfo('Конец игры!')

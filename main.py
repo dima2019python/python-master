@@ -32,11 +32,15 @@ def check_ship():
     (ship_x, ship_y, ship_x2, ship_y2) = c.coords(space_ship)
     for met in meteors:
         (met_x, met_y, met_x2, met_y2) = c.coords(met)
-        if ship_x < met_x and met_x2 < ship_x2 and ship_y2 - met_y2 < 40:
+        if ((met_x >= ship_x) and (met_x <= ship_x2) 
+            or (met_x2 <= ship_x2) and (met_x2 >= ship_x)) \
+                and ((met_y >= ship_y2) and (met_y <= ship_y) 
+                     or (met_y2 >= ship_y) and (met_y2 <= ship_y2)):
             lose_a_life()
             meteors.remove(met)
             c.delete(met)
     root.after(100, check_ship)
+
 
 
 def move_met():
